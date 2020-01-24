@@ -17,10 +17,24 @@
  */
 
 function formatSeconds(num) {
-  // This is your job. :)
+  let seconds = num%60
+  let hour=0;
 
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+  
+
+    let minute = parseInt(num/60);
+    if(minute < 60){
+
+       return `${hour}h ${minute}m  ${seconds}s`;
+    }
+    else{
+      //minute=minute%60;
+      hour=parseInt(minute/60);
+      minute=minute%60;
+      return `${hour}h ${minute}m  ${seconds}s`;
+
+    }
+  
 }
 
 if (require.main === module) {
@@ -34,7 +48,9 @@ if (require.main === module) {
 
   This is where the code is most likely to go wrong.
   */
-
+  console.log(formatSeconds(0));
+  console.log(formatSeconds(65));
+  console.log(formatSeconds(3615));
   console.log(formatSeconds(0) === '0s');
   console.log(formatSeconds(1) === '1s');
 
