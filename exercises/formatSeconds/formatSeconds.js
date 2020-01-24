@@ -17,33 +17,76 @@
  */
 
 function formatSeconds(num) {
-  // This is your job. :)
+  let overall = "";
+  let weeks;
+  let days;
+  let hours;
+  let minutes;
 
-  // Remember, if the code is stumping you, take a step back and
-  // make sure you can do it by hand.
+  let SECONDS_IN_WEEK = 60*60*24*7;
+
+  if(parseInt(num/SECONDS_IN_WEEK) > 0)
+  {weeks = parseInt(num/SECONDS_IN_WEEK);
+  num = num%SECONDS_IN_WEEK;
+  overall = overall + weeks + "w"}
+  console.log(overall)
+
+  let SECONDS_IN_DAY = 60*60*24;
+
+  if(parseInt(num/SECONDS_IN_DAY) > 0)
+  {days = parseInt(num/SECONDS_IN_DAY);
+  num = num%SECONDS_IN_DAY;
+  overall = overall + " " + days + "d"}
+  else if(weeks > 0)
+  {overall = overall + " 0d"}
+ 
+
+  let SECONDS_IN_HOUR = 60*60;
+
+  if(parseInt(num/SECONDS_IN_HOUR) > 0)
+  {hours = parseInt(num/SECONDS_IN_HOUR);
+  num = num%SECONDS_IN_HOUR;
+  overall = overall + " " + hours + "h"}
+  else if(weeks > 0 || days > 0)
+  {overall = overall + " 0h"}
+
+  let ONE_MINUTE = 60;
+
+  if(parseInt(num/ONE_MINUTE) > 0)
+  {minutes = parseInt(ONE_MINUTE);
+  num = num%ONE_MINUTE;
+  overall = overall + " " + minutes + "m"}
+  else if(weeks > 0 || days > 0 || hours > 0)
+  {overall = overall + " 0m"}
+
+
+  if(num < 60)
+  {overall = overall + " " + num + "s"}
+  
+  return overall;
 }
 
 if (require.main === module) {
   console.log('Running sanity checks for formatSeconds:');
 
-  /*
-  Add your own test cases here! These four aren't enough.
+  module.exports == formatSeconds.js;
 
-  Notice that we're looking at "edge cases": the boundary where the
-  parts "flip over", and also the values on either side of that boundary.
+  console.log(formatSeconds(0) === ' 0s');
+  console.log(formatSeconds(1) === ' 1s');
 
-  This is where the code is most likely to go wrong.
-  */
+  console.log(formatSeconds(55) === ' 55s');
+  console.log(formatSeconds(60) === ' 1m 0s');
+  console.log(formatSeconds(60));
+  console.log(formatSeconds(65) === ' 1m 5s');
+  console.log(formatSeconds(65));
 
-  console.log(formatSeconds(0) === '0s');
-  console.log(formatSeconds(1) === '1s');
+  console.log(formatSeconds(3600) === ' 1h 0m 0s');
+  console.log(formatSeconds(3615) === ' 1h 0m 15s');
 
-  console.log(formatSeconds(55) === '55s');
-  console.log(formatSeconds(60) === '1m 0s');
-  console.log(formatSeconds(65) === '1m 5s');
-
-  console.log(formatSeconds(3600) === '1h 0m 0s');
-  console.log(formatSeconds(3615) === '1h 0m 15s');
-}
+  console.log(formatSeconds(90000) === ' 1d 1h 0m 0s');
+  console.log(formatSeconds(90000));
+  console.log(formatSeconds(691215) === ' 1w 1d 0h 0m 15s');
+  console.log(formatSeconds(691215));
 
 module.exports = formatSeconds;
+}
