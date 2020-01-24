@@ -18,22 +18,25 @@
 
 function formatSeconds(num) {
   let seconds = num%60
-  let hour=0;
+  
 
   
 
     let minute = parseInt(num/60);
-    if(minute < 60){
-
-       return `${hour}h ${minute}m  ${seconds}s`;
-    }
-    else{
-      //minute=minute%60;
-      hour=parseInt(minute/60);
+    
+     
+      hours=parseInt(minute/60);
       minute=minute%60;
-      return `${hour}h ${minute}m  ${seconds}s`;
+     
+    
+      let days=parseInt(hours/24);
+      
+      hours =hours%24;
+      let weeks=parseInt(days/7);
+      days = days%7;
 
-    }
+      return `${weeks}w ${days}d ${hours}h ${minute}m  ${seconds}s`
+    
   
 }
 
@@ -51,6 +54,8 @@ if (require.main === module) {
   console.log(formatSeconds(0));
   console.log(formatSeconds(65));
   console.log(formatSeconds(3615));
+  console.log(formatSeconds(5184000));
+  console.log()
   console.log(formatSeconds(0) === '0s');
   console.log(formatSeconds(1) === '1s');
 
