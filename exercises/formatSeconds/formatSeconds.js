@@ -21,6 +21,19 @@ function formatSeconds(num) {
 
   // Remember, if the code is stumping you, take a step back and
   // make sure you can do it by hand.
+
+  if (num < 60) {
+    sec = num + 's'
+  }
+  else if (num < 3600) {
+    sec = Math.floor(num / 60) + 'm ' + num % 60 + 's'
+  }
+  else if (num < 86400) {
+    sec = Math.floor(num / 3600) + 'h ' + Math.floor((num - 3600) / 60) + 'm ' + num % 60 + 's'
+  }
+  let formatted = sec //weeks + days + hours + mins + sec
+  console.log(formatted)
+  return formatted 
 }
 
 if (require.main === module) {
@@ -44,6 +57,7 @@ if (require.main === module) {
 
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
+  console.log(formatSeconds(50000) === '13h 53m 20s');
 }
 
 module.exports = formatSeconds;
