@@ -23,15 +23,20 @@ function formatSeconds(num) {
   // make sure you can do it by hand.
 
   if (num < 60) {
-    sec = num + 's'
+    formatted = num + 's'
   }
   else if (num < 3600) {
-    sec = Math.floor(num / 60) + 'm ' + num % 60 + 's'
+    formatted = Math.floor(num / 60) + 'm ' + num % 60 + 's'
   }
   else if (num < 86400) {
-    sec = Math.floor(num / 3600) + 'h ' + Math.floor((num - 3600) / 60) + 'm ' + num % 60 + 's'
+    formatted = Math.floor(num / 3600) + 'h ' + Math.floor((num % 3600) / 60) + 'm ' + num % 60 + 's'
   }
-  let formatted = sec //weeks + days + hours + mins + sec
+  else if (num < 604800) {
+    formatted = Math.floor(num / 86400) + 'd ' + Math.floor((num % 86400) / 3600) + 'h ' + Math.floor((num % 3600) / 60) + 'm ' + num % 60 + 's'
+  }
+  else if (num < 2419200) {
+    formatted = Math.floor(num / 604800) + 'w ' + Math.floor((num % 604800) / 86400) + 'd ' + Math.floor((num % 86400) / 3600) + 'h ' + Math.floor((num % 3600) / 60) + 'm ' + num % 60 + 's'
+  }
   console.log(formatted)
   return formatted 
 }
@@ -58,6 +63,8 @@ if (require.main === module) {
   console.log(formatSeconds(3600) === '1h 0m 0s');
   console.log(formatSeconds(3615) === '1h 0m 15s');
   console.log(formatSeconds(50000) === '13h 53m 20s');
+  console.log(formatSeconds(100000) === '1d 3h 46m 40s');  
+  console.log(formatSeconds(1000000) === '1w 4d 13h 46m 40s');
 }
 
 module.exports = formatSeconds;
