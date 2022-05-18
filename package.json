@@ -4,13 +4,13 @@
   "description": "Fundamental JavaScript Exercises II",
   "main": "index.js",
   "devDependencies": {
-    "eslint": "^7.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^8.15.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "jsdoc": "^3.6.6"
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^4.1.0",
+    "jsdoc": "^3.6.10"
   },
   "scripts": {
     "docs": "npx jsdoc -c ./.jsdoc.conf.json",
